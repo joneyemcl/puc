@@ -26,24 +26,36 @@ def run(data_paths, datasets, methods):
     return cell_predictions
 
 
-def eval_predictions(data_paths, datasets, input_path, predictions):
-    # evaluate cell predictions
+def eval_predictions(data_paths, datasets, input_path, predictions, methods):
+    # Load cell annotations
     annotations = np.load(input_path + "cell_annotations.npy", allow_pickle=True).item()
     evaluations = {}
+    
     for dataset in datasets:
+        # Initialize evaluations for the dataset
         columns = data_paths[dataset]["columns"]
-        evaluations[dataset] = {col: {} for col in columns}
-
+        evaluations[dataset] = {col: {method: {"correct": 0, "false": 0} for method in methods} for col in columns}
+        
+        # Check if the dataset exists in annotations
+        if dataset not in annotations:
+            print(f"Warning: No annotations found for dataset '{dataset}'. Skipping evaluation.")
+            continue
+        
+        # Perform evaluation if annotations are available
         for method in methods:
-            results = evaluate_identification_experiment(
-                dataset,
-                columns,
-                method,
-                annotations[dataset],
-                predictions[dataset][method],
-            )
-            for col in results:
-                evaluations[dataset][col][method] = results[col]
+            if dataset in predictions and method in predictions[dataset]:  # Ensure the method exists in predictions
+                results = evaluate_identification_experiment(
+                    dataset,
+                    columns,
+                    method,
+                    annotations[dataset],
+                    predictions[dataset][method],
+                )
+                for col in results:
+                    evaluations[dataset][col][method] = results[col]
+            else:
+                print(f"Warning: No predictions found for method '{method}' in dataset '{dataset}'.")
+    
     return evaluations
 
 
@@ -62,8 +74,8 @@ def report_results(predictions, evaluations, output_path):
 
 def main(data_paths, datasets, methods, input_path, output_path):
     predictions = run(data_paths, datasets, methods)
-    # evaluations = eval_predictions(data_paths, datasets, input_path, predictions)
-    report_results(predictions, output_path)
+    evaluations = eval_predictions(data_paths, datasets, input_path, predictions, methods)
+    report_results(predictions, evaluations, output_path)
 
 
 if __name__ == "__main__":

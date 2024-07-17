@@ -32,10 +32,10 @@ def as_table_cell(evaluations, methods):
     evaluations_df = []
     for d in evaluations:
         for c in evaluations[d]:
-            temp = [d, c] + [evaluations[d][c][m]["correct"] for m in methods]
+            temp = [d, c] + [evaluations[d][c][m].get("correct", 0) for m in methods]
             temp.append(
-                evaluations[d][c][methods[0]]["correct"]
-                + evaluations[d][c][methods[0]]["false"]
+                evaluations[d][c][methods[0]].get("correct", 0)
+                + evaluations[d][c][methods[0]].get("false", 0)
             )
             evaluations_df.append(temp)
     return pd.DataFrame.from_records(

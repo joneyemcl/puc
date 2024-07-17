@@ -79,6 +79,7 @@ def pint_predict(_cell_value):
     return prediction
 
 
+
 def ner_predict(unit):
 
     # unit = parse_cell_value(_cell_value)[1]
