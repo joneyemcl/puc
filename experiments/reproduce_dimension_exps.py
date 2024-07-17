@@ -62,8 +62,8 @@ def report_results(predictions, times_taken, evaluations, methods, output_path):
     metrics_df.to_latex(output_path + "dimension_evaluations.tex")
 
     # Vizualize the results (normalized confusion matrices and runtimes)
-    plot_hintons(evaluations_df, output_path, methods)
-    plot_runtimes(times_df, output_path)
+    #plot_hintons(evaluations_df, output_path, methods)
+    #plot_runtimes(times_df, output_path)
 
 
 def main(data_paths, datasets, methods, input_path, output_path):

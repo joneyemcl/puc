@@ -3,6 +3,7 @@ from collections import Counter
 from pint.errors import DefinitionSyntaxError, UndefinedUnitError
 from tokenize import TokenError
 from quantulum3 import parser
+from pint import UnitRegistry
 
 from src.PUC import PUC
 from src.utils import parse_cell_value
@@ -54,12 +55,22 @@ def quantulum_predict(_cell_value):
 
 
 def pint_predict(_cell_value):
-    quants = Q_(_cell_value)
+    ureg = UnitRegistry()
+    Q_ = ureg.Quantity
+    
+    # Validate input to avoid division by zero
+    try:
+        # Attempt to create the quantity to catch any zero division errors
+        quants = Q_(_cell_value)
+    except ZeroDivisionError:
+        raise ValueError("Division by zero detected in cell_value: {}".format(_cell_value))
+    
     temp = list(quants.dimensionality.keys())
     if len(temp) > 0:
-        entity = list(quants.dimensionality.keys())[0].replace("[", "").replace("]", "")
+        entity = temp[0].replace("[", "").replace("]", "")
     else:
         entity = "unknown"
+    
     prediction = {
         "magnitude": quants.magnitude,
         "unit": str(quants.units),

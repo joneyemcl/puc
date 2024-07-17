@@ -4,6 +4,7 @@ INPUT_ROOT = "experiments/inputs/"
 OUTPUT_ROOT = "experiments/outputs/"
 DATASETS = [
     "arabica_ratings",
+    "NumUnit",
     # "hes",
     "huffman",
     "phm",
@@ -35,6 +36,12 @@ DATA_PATHS = {
         # "data": DATA_ROOT + "arabica_ratings_raw.csv",
         "columns": ["Bag Weight", "Altitude"],
         "output": OUTPUT_ROOT + "arabica_ratings.csv",
+    },
+    "NumUnit": {
+        "data": DATA_ROOT + "NumUnit.csv",
+        # "data": DATA_ROOT + "arabica_ratings_raw.csv",
+        "columns": ["Description"],
+        "output": OUTPUT_ROOT + "NumUnit_puc.csv",
     },
     "hes": {
         "data": DATA_ROOT + "HES/UKDA-7874-csv/csv/appdata/appliance_data.csv",

@@ -27,7 +27,7 @@ class PUC:
 
         self.unit_ontology = load_json_2_dict(unit_ontology_path)
         self.dimensions = list(self.unit_ontology.keys())
-        self.units = json.load(open("experiments/inputs/units.json"))
+        self.units = json.load(open("experiments/inputs/units.json", encoding="utf-8-sig"))
         # self.symbols =
         self.symbols = {
             d: get_symbols_for_entity(d, self.units) for d in self.dimensions

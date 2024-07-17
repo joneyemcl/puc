@@ -62,8 +62,8 @@ def report_results(predictions, evaluations, output_path):
 
 def main(data_paths, datasets, methods, input_path, output_path):
     predictions = run(data_paths, datasets, methods)
-    evaluations = eval_predictions(data_paths, datasets, input_path, predictions)
-    report_results(predictions, evaluations, output_path)
+    # evaluations = eval_predictions(data_paths, datasets, input_path, predictions)
+    report_results(predictions, output_path)
 
 
 if __name__ == "__main__":
