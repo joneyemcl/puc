@@ -1,0 +1,45 @@
+NumUnit,description,unit,source_code_description
+NumUnit,mmol/L,unit,millimole per liter
+NumUnit,10*9/L,unit,billion per liter
+NumUnit,mm Hg,unit,millimeter mercury column
+NumUnit,g/L,unit,gram per liter
+NumUnit,umol/L,unit,micromole per liter
+NumUnit,mmHg,unit,millimeter mercury column
+NumUnit,%,unit,percent
+NumUnit,kg,unit,kilogram
+NumUnit,u/L,unit,unit per liter
+NumUnit,fL,unit,femtoliter
+NumUnit,iu/L,unit,international unit per liter
+NumUnit,pg,unit,picogram
+NumUnit,cm,unit,centimeter
+NumUnit,10*12/L,unit,trillion per liter
+NumUnit,g/dL,unit,gram per deciliter
+NumUnit,kg/m2,unit,kilogram per square meter
+NumUnit,beats/min,unit,heartbeat
+NumUnit,x10^9/l,unit,billion per liter
+NumUnit,ml/min,unit,milliliter per minute
+NumUnit,mu/L,unit,milliunit per liter
+NumUnit,l/l,unit,liter per liter
+NumUnit,ug/L,unit,microgram per liter
+NumUnit,mg/L,unit,milligram per liter
+NumUnit,mmol/mol,unit,millimole per mole
+NumUnit,10^9/l,unit,billion per liter
+NumUnit,pmol/L,unit,picomole per liter
+NumUnit,units/week,unit,per week
+NumUnit,x10*9/L,unit,billion per liter
+NumUnit,l/min,unit,liter per minute
+NumUnit,mIU/L,unit,milli-international unit per liter
+NumUnit,U/week,unit,unit per week
+NumUnit,degrees C,unit,degree Celsius
+NumUnit,ratio,unit,ratio
+NumUnit,mm/h,unit,millimeter per hour
+NumUnit,ng/L,unit,nanogram per liter
+NumUnit,mm[Hg],unit,millimeter mercury column
+NumUnit,ml/min/1.73m2,unit,milliliter per minute per 1.73 square meter
+NumUnit,nmol/L,unit,nanomole per liter
+NumUnit,/minute,unit,per minute
+NumUnit,/day,unit,per 24 hours
+NumUnit,/4,unit,score
+NumUnit,ml/min/1.73m*2,unit,milliliter per minute per 1.73 square meter
+NumUnit,mg/mmol,unit,milligram per millimole
+NumUnit,01-Jan,unit,liter per liter
