@@ -147,13 +147,15 @@ def as_table_times(times, methods):
 def evaluate_prediction(truth, prediction):
     # to convert '1/2' to 0.5
     if (type(prediction) == dict) and type(prediction["magnitude"]) == str:
-
         if prediction["magnitude"] == "":
-            prediction[
-                "magnitude"
-            ] = 1.0  # missing magnitude and filling it as 1 are assumed to be both correct.
+            prediction["magnitude"] = 1.0  # missing magnitude and filling it as 1 are assumed to be both correct.
         else:
-            prediction["magnitude"] = float(Fraction(prediction["magnitude"]))
+            try:
+                # Handle cases where the fraction might be malformed or have a zero denominator
+                prediction["magnitude"] = float(Fraction(prediction["magnitude"]))
+            except (ZeroDivisionError, ValueError):
+                print(f"Warning: Invalid magnitude '{prediction['magnitude']}' found. Assuming magnitude as 1.")
+                prediction["magnitude"] = 1.0
 
     if (type(prediction) == dict) and type(prediction["unit"]) == list:
         if len(prediction["unit"]) == 1:
@@ -161,10 +163,7 @@ def evaluate_prediction(truth, prediction):
                 return (
                     (type(prediction) == dict)
                     and (truth["magnitude"] == float(prediction["magnitude"]))
-                    and (
-                        len(set(prediction["unit"]).intersection(set(truth["unit"])))
-                        > 0
-                    )
+                    and (len(set(prediction["unit"]).intersection(set(truth["unit"]))) > 0)
                 )
             else:
                 return (
@@ -173,10 +172,7 @@ def evaluate_prediction(truth, prediction):
                     and (truth["unit"] in prediction["unit"][0])
                 )
         else:
-            # if len(prediction["unit"]) > 1:
-            #     print("multiple matches", prediction["unit"])
             return False
-
     else:
         return (
             (type(prediction) == dict)

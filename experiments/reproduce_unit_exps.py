@@ -28,7 +28,7 @@ def run(data_paths, datasets, methods):
 
 def eval_predictions(data_paths, datasets, input_path, predictions, methods):
     # Load cell annotations
-    annotations = np.load(input_path + "cell_annotations.npy", allow_pickle=True).item()
+    annotations = np.load(input_path + "updated_cell_annotations1554.npy", allow_pickle=True).item()
     evaluations = {}
     
     for dataset in datasets:
